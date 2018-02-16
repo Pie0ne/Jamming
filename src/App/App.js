@@ -14,6 +14,10 @@ class App extends Component {
     };
   }
 
+  addTrack (track) {
+    if(track.id === this.state.playlistTracks)
+  }
+
   render() {
     return (
       <div>
