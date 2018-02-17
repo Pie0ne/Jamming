@@ -6,6 +6,8 @@ class App extends Component {
     super(props);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
+
     this.state.searchResults = {
         name: '',
         artist: '',
@@ -35,6 +37,16 @@ class App extends Component {
       });
     }
 
+    savePlaylist() {
+      const trackUris = this.state.playlistTrack.map(playlistTrack => playlistTrack.uri);
+      Spotify.savePlaylist(this.state.playlistName, trackUris);
+      this.setState({
+          searchResults: [];
+      });
+      this.updatePlaylistName('My playlst');
+      console.info(trackUris);
+    }
+
   render() {
     return (
       <div>
@@ -48,6 +60,7 @@ class App extends Component {
             playlistTracks={this.state.playlistTracks} 
             onRemove={this.removeTrack} 
             onNameChange={this.updatePlaylistName} 
+            onSave={this.savePlaylist}
             />
           </div>
         </div>
