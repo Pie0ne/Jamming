@@ -14,8 +14,12 @@ class App extends Component {
     };
   }
 
-  addTrack (track) {
-    if(track.id === this.state.playlistTracks)
+    addTrack(track) {
+      if (!this.state.playlistTracks.find(playlistTrack => playlistTrack.id === track.id)) {
+        this.setState(prevState => ({
+        playlistTracks: [...prevState.playlistTracks, track] 
+      }));
+    }
   }
 
   render() {
@@ -25,7 +29,7 @@ class App extends Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} />
+            <SearchResults searchResults={this.state.searchResults}  onAdd={this.addTrack} />
             <Playlist playlistName={this.state.playlistName} playistTracks={this.state.playlistTracks}/>
           </div>
         </div>
