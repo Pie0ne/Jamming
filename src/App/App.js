@@ -4,7 +4,7 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-
+    this.removeTrack = this.removeTrack.bind(this);
     this.state.searchResults = {
         name: '',
         artist: '',
@@ -18,9 +18,16 @@ class App extends Component {
       if (!this.state.playlistTracks.find(playlistTrack => playlistTrack.id === track.id)) {
         this.setState(prevState => ({
         playlistTracks: [...prevState.playlistTracks, track] 
-      }));
+        }));
+      }
     }
-  }
+
+    removeTrack(track) {
+      this.setState({
+        playlistTracks: this.state.playlistTracks.filter(playlistTrack => playlistTrack.id !== track.id)
+      });
+    }
+
 
   render() {
     return (
@@ -30,7 +37,8 @@ class App extends Component {
           <SearchBar />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults}  onAdd={this.addTrack} />
-            <Playlist playlistName={this.state.playlistName} playistTracks={this.state.playlistTracks}/>
+            <Playlist playlistName={this.state.playlistName} playistTracks={this.state.playlistTracks} 
+            onRemove={this.removeTrack}/>
           </div>
         </div>
       </div>
