@@ -4,9 +4,11 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+    this.search = this.search.bind(this);
 
     this.state.searchResults = {
         name: '',
@@ -41,10 +43,14 @@ class App extends Component {
       const trackUris = this.state.playlistTrack.map(playlistTrack => playlistTrack.uri);
       Spotify.savePlaylist(this.state.playlistName, trackUris);
       this.setState({
-          searchResults: [];
+          searchResults: []
       });
       this.updatePlaylistName('My playlst');
       console.info(trackUris);
+    }
+
+    search(term) {
+      Spotify.search(term);
     }
 
   render() {
@@ -52,15 +58,17 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mm</span>ing</h1>
         <div className="App">
-          <SearchBar />
+          <SearchBar 
+            onSearch={this.search}
+          />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults}  onAdd={this.addTrack} />
             <Playlist 
-            playlistName={this.state.playlistName} 
-            playlistTracks={this.state.playlistTracks} 
-            onRemove={this.removeTrack} 
-            onNameChange={this.updatePlaylistName} 
-            onSave={this.savePlaylist}
+                playlistName={this.state.playlistName} 
+                playlistTracks={this.state.playlistTracks} 
+                onRemove={this.removeTrack} 
+                onNameChange={this.updatePlaylistName} 
+                onSave={this.savePlaylist}
             />
           </div>
         </div>
