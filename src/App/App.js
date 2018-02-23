@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Spotify from '../../util/Spotify';
-import SearchBar from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/Components/SearchBar';
-import SearchResults from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/Components/SearchResults';
+import Spotify from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/util/Spotify.js';
+import SearchBar from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/Components/SearchBar/SearchBar';
+import SearchResults from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/Components/SearchResults/SearchResults';
 import Playlist from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/Components/Playlist/Playlist';
 import './App.css';
 
@@ -15,7 +15,8 @@ class App extends Component {
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
 
-    this.state.searchResults = {
+    this.state = {
+        searchResults: [],
         name: '',
         artist: '',
         album: '',
@@ -45,7 +46,7 @@ class App extends Component {
     }
 
     savePlaylist() {
-      const trackUris = this.state.playlistTrack.map(playlistTrack => playlistTrack.uri);
+      let trackUris = this.state.playlistTrack.map(playlistTrack => playlistTrack.uri);
       Spotify.savePlaylist(this.state.playlistName, trackUris);
       this.setState({
           searchResults: []
