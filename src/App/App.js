@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import Spotify from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/util/Spotify.js';
 import SearchBar from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/Components/SearchBar/SearchBar';
@@ -5,6 +6,8 @@ import SearchResults from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY
 import Playlist from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/Components/Playlist/Playlist';
 import './App.css';
 
+
+//Spotify.getAccessToken();
 
 class App extends Component {
   constructor(props) {
@@ -17,13 +20,18 @@ class App extends Component {
 
     this.state = {
         searchResults: [],
-        name: '',
-        artist: '',
-        album: '',
-        playlistName: '',
+        playlistName: 'New Playlist',
         playListTracks: [],
     };
   }
+
+  search(term) {
+      Spotify.search(term).then((tracks) => {
+        this.setState({
+          searchResults: tracks
+        })
+      })
+    }
 
     addTrack(track) {
       if (!this.state.playlistTracks.find(playlistTrack => playlistTrack.id === track.id)) {
@@ -46,20 +54,12 @@ class App extends Component {
     }
 
     savePlaylist() {
-      let trackUris = this.state.playlistTrack.map(playlistTrack => playlistTrack.uri);
+      let trackUris = this.state.playlistTrack.map(track => track.uri);
       Spotify.savePlaylist(this.state.playlistName, trackUris);
       this.setState({
-          searchResults: []
-      });
-      this.updatePlaylistName('My playlst');
-      console.info(trackUris);
-    }
-
-    search(term) {
-      Spotify.search(term)
-      .then(searchResults => this.setState({
-        searchResults: searchResults
-      }));
+        playlistName: 'New Playlist',
+        playlistTracks: []
+      })
     }
 
   render() {
