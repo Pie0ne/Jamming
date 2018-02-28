@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import Spotify from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/util/Spotify.js';
 import SearchBar from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/Components/SearchBar/SearchBar';
 import SearchResults from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/projects/jamming/src/Components/SearchResults/SearchResults';
@@ -7,9 +7,7 @@ import Playlist from 'C:/Users/Pie0ne1/Desktop/ALL/Programowanie/CODECADEMY/proj
 import './App.css';
 
 
-//Spotify.getAccessToken();
-
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -54,13 +52,14 @@ class App extends Component {
     }
 
     savePlaylist() {
-      let trackUris = this.state.playlistTrack.map(track => track.uri);
-      Spotify.savePlaylist(this.state.playlistName, trackUris);
+    const trackURIs = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
       this.setState({
         playlistName: 'New Playlist',
         playlistTracks: []
-      })
-    }
+      });
+    });
+  }
 
   render() {
     return (
