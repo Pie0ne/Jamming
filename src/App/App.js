@@ -25,10 +25,16 @@ class App extends React.Component {
   }
 
   addTrack(track) {
-    let tracks = this.props.tracks ? this.props.tracks : [];
-    tracks.push(track);
-    this.setState({ playlistTracks: tracks });
-  } 
+    console.log('testing the state: ', this.state.playlistTracks)
+    if (this.state.playlistTracks.find(tracks => tracks.id !== track.id)) {
+
+      this.state.playlistTracks.push(track);
+      this.setState({
+        playlistTracks: this.state.playlistTracks
+      });
+    }
+
+  }
 
   removeTrack(track) {
     let tracks = this.state.playlistTracks;
