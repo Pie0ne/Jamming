@@ -13,8 +13,7 @@ class App extends React.Component {
     this.state = {
         searchResults: [],
         playlistName: 'New Playlist',
-        playListTracks: [],
-
+        playlistTracks: [],
     }
 
     this.addTrack = this.addTrack.bind(this);
@@ -25,15 +24,12 @@ class App extends React.Component {
   }
 
   addTrack(track) {
-    console.log('testing the state: ', this.state.playlistTracks)
-    if (this.state.playlistTracks.find(tracks => tracks.id !== track.id)) {
-
+    if (!this.state.playlistTracks.find(tracks => tracks.id === track.id)) {
       this.state.playlistTracks.push(track);
       this.setState({
         playlistTracks: this.state.playlistTracks
       });
     }
-
   }
 
   removeTrack(track) {

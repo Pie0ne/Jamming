@@ -25,9 +25,7 @@ class Track extends React.Component {
 			return <a className="Track-action" onClick={this.addTrack}>+</a>;
 		}
 	}
-
 	
-
 	render() {	
 		return (
 			<div className="Track" key={this.props.track.id}>
