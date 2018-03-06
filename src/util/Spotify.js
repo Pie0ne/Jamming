@@ -1,5 +1,5 @@
 const clientId = 'ef3ff6d4b61f4b26be597b55112afc9b';
-const redirectUri = 'https://pie0ne.github.io/Jamming/';
+const redirectURI = 'https://pie0ne.github.io/Jamming/';
 
 let accessToken;
 
@@ -18,7 +18,7 @@ const Spotify = {
             window.history.pushState('Access Token', null, '/');
             return accessToken;
         } else {
-            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
             window.location = accessUrl;
         }
     },
