@@ -1,5 +1,5 @@
 const clientId = 'ef3ff6d4b61f4b26be597b55112afc9b';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://pie0ne.github.io/Jamming/';
 
 let accessToken;
 
