@@ -24,7 +24,7 @@ class SearchBar extends React.Component {
 
 	handleKeyPress(e) {
 		if (e.key === 'Enter') {
-			this.props.onSearch(this.state.term)
+			this.props.onSearch(this.state.term);
 		}
 	}
 

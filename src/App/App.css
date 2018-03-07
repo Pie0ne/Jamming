@@ -52,3 +52,7 @@ h2 {
     flex-direction: column;
   }
 }
+
+@media (max-width: 767px) {
+  
+}
