@@ -6,7 +6,12 @@
   "dependencies": {
     "cryptiles": "^4.1.2",
     "deep-extend": "^0.6.0",
+<<<<<<< HEAD
     "js-yaml": "^3.13.1",
+=======
+    "extend": "^3.0.2",
+    "lodash.update": "^4.10.2",
+>>>>>>> 1514479d86fba9c8aee894f66bf949278431de7a
     "macaddress": "^0.2.9",
     "merge": "^1.2.1",
     "randomatic": "^3.1.0",
